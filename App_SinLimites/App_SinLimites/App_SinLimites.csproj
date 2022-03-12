@@ -161,6 +161,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Administracion\AdministracionAreaRegistration.cs" />
+    <Compile Include="Areas\Administracion\Controllers\BancoController.cs" />
+    <Compile Include="Areas\Administracion\Controllers\UsuariosController.cs" />
+    <Compile Include="Areas\Administracion\Models\BancosModelView.cs" />
+    <Compile Include="Areas\Administracion\Models\UsuariosModelView.cs" />
+    <Compile Include="Areas\Administracion\Repositorio\CombosRepositorio.cs" />
+    <Compile Include="Areas\Administracion\Repositorio\BancoRepositorio.cs" />
+    <Compile Include="Areas\Administracion\Repositorio\UsuarioRepositorio.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -169,6 +177,11 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recursos\Clases\Css_Codigo.cs" />
+    <Compile Include="Recursos\Clases\Css_Encriptar.cs" />
+    <Compile Include="Recursos\Clases\Css_IP.cs" />
+    <Compile Include="Recursos\Clases\Css_Log.cs" />
+    <Compile Include="Recursos\Clases\Css_Ruta.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\animate.min.css" />
@@ -4043,7 +4056,119 @@
     <Content Include="assets\vendor\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="assets\vendor\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="assets\vendor\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Areas\Administracion\Views\Web.config" />
+    <Content Include="Areas\Administracion\Views\Usuarios\Index.cshtml" />
+    <Content Include="Areas\Administracion\Views\Usuarios\Mantenimiento.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Recursos\Log\00fa0d13-2806-457d-854d-4cb301cce36dLog.txt" />
+    <Content Include="Recursos\Log\03913484-39c5-4bcc-955b-50d5c31d5ab0Log.txt" />
+    <Content Include="Recursos\Log\03b7643f-bec8-43b8-891e-4b84cd4f088cLog.txt" />
+    <Content Include="Recursos\Log\0887be07-bad4-4b6c-8628-8a0191a3f270Log.txt" />
+    <Content Include="Recursos\Log\11497201-03ce-4067-a4c5-176d3dcb2bbeLog.txt" />
+    <Content Include="Recursos\Log\13c7353c-e926-47a3-8dc9-3b03b01cc7d7Log.txt" />
+    <Content Include="Recursos\Log\141b7761-a118-4efa-9271-f3422bd8d3cdLog.txt" />
+    <Content Include="Recursos\Log\15179005-d3d6-4b43-ba4b-9c70b99067f8Log.txt" />
+    <Content Include="Recursos\Log\1521ed5f-fc69-416a-a5ee-f1365508df81Log.txt" />
+    <Content Include="Recursos\Log\19a6b617-b74f-4211-af34-2853d57aa1e2Log.txt" />
+    <Content Include="Recursos\Log\1ac75919-639b-4620-be28-d15a2fe774dbLog.txt" />
+    <Content Include="Recursos\Log\23b2f5bc-054d-44bf-a4ce-3b90edb163d2Log.txt" />
+    <Content Include="Recursos\Log\25b98b00-6eb0-4b62-abfa-a14d48ca1946Log.txt" />
+    <Content Include="Recursos\Log\260ded6b-bdc8-4b25-871f-02c338005637Log.txt" />
+    <Content Include="Recursos\Log\27df55f7-71d7-4e9a-9cf5-cc1a7ec8b205Log.txt" />
+    <Content Include="Recursos\Log\28ef2ed0-0138-484b-95c0-fd0fb260cc00Log.txt" />
+    <Content Include="Recursos\Log\2f2d8312-f1fc-48c9-b3c7-05acba0d7c37Log.txt" />
+    <Content Include="Recursos\Log\2fb8eddb-24fb-4191-9cb1-83c20653321dLog.txt" />
+    <Content Include="Recursos\Log\31f018f9-46c5-4d91-8015-1e2bd5eb60c0Log.txt" />
+    <Content Include="Recursos\Log\324456d4-040d-41da-bc95-c70d72a3dd5dLog.txt" />
+    <Content Include="Recursos\Log\33d2b516-78ff-4ae1-8ace-075f7650f91fLog.txt" />
+    <Content Include="Recursos\Log\3ca40f63-bc29-42d4-9d74-9f04e19c54b4Log.txt" />
+    <Content Include="Recursos\Log\42b5d7b2-a3ef-48f2-b330-8275e4db1f84Log.txt" />
+    <Content Include="Recursos\Log\4744a3c5-7d7b-4d61-992d-57b6cbb199d0Log.txt" />
+    <Content Include="Recursos\Log\4745a325-628f-4c11-b79c-605731eb3c6aLog.txt" />
+    <Content Include="Recursos\Log\48ea17d8-ae77-4be8-818a-1f677caa5f86Log.txt" />
+    <Content Include="Recursos\Log\48ec667f-7ec5-4e7e-811e-19e8bc060cfeLog.txt" />
+    <Content Include="Recursos\Log\4d647e61-36a3-4988-a972-b6fb875baac7Log.txt" />
+    <Content Include="Recursos\Log\541a3b7b-6ea2-48d4-b48f-ecd721b77ac1Log.txt" />
+    <Content Include="Recursos\Log\563df4e0-d16f-45ab-8220-b73cf7ad1f44Log.txt" />
+    <Content Include="Recursos\Log\5ac95354-6f14-4d0f-91d8-70be94ab7b4dLog.txt" />
+    <Content Include="Recursos\Log\600b5df2-cc6f-4e85-9d22-2f16b7e23f10Log.txt" />
+    <Content Include="Recursos\Log\60a2660b-321d-43df-ae55-774f67e31412Log.txt" />
+    <Content Include="Recursos\Log\63baf579-1a85-437d-b662-07f71c28e36cLog.txt" />
+    <Content Include="Recursos\Log\68cd3ae6-29d0-41ff-8198-2225539a9b26Log.txt" />
+    <Content Include="Recursos\Log\6c52e5e1-7880-414f-834d-8749c59e2221Log.txt" />
+    <Content Include="Recursos\Log\6cd2a51b-f960-48b9-b86d-4486384ad1c6Log.txt" />
+    <Content Include="Recursos\Log\6d7b170d-cd7c-4228-809c-05d0df561783Log.txt" />
+    <Content Include="Recursos\Log\6df234d0-abcf-4c75-93bd-0868cf0d6076Log.txt" />
+    <Content Include="Recursos\Log\6e9637d6-78fa-4359-852e-2430524d8f5dLog.txt" />
+    <Content Include="Recursos\Log\741686ae-dee8-4472-8f34-cda1c98ade45Log.txt" />
+    <Content Include="Recursos\Log\754c01b3-228f-42ea-83dd-18b0b732fd4fLog.txt" />
+    <Content Include="Recursos\Log\7668ebd7-8b0e-4695-8107-7a017a57ec5cLog.txt" />
+    <Content Include="Recursos\Log\778ede57-0c62-4012-a865-891c53719a84Log.txt" />
+    <Content Include="Recursos\Log\79a7bd9a-2dd3-4e0e-a350-33f5059d7ac5Log.txt" />
+    <Content Include="Recursos\Log\79fa25ab-ac7a-4236-b1c2-8ec7454337bfLog.txt" />
+    <Content Include="Recursos\Log\7b76ebe5-ce74-4283-9602-7f182ca9b775Log.txt" />
+    <Content Include="Recursos\Log\817d8092-72e6-4631-8753-8a52d2ee8831Log.txt" />
+    <Content Include="Recursos\Log\83e01f03-68c0-475a-9dda-c8ffc6b7011bLog.txt" />
+    <Content Include="Recursos\Log\83f03cc8-d48f-4844-9da2-d1fb9e32aac3Log.txt" />
+    <Content Include="Recursos\Log\8a021daa-2792-4834-a9ab-5646609067b5Log.txt" />
+    <Content Include="Recursos\Log\8ae594ec-4ada-4f90-8579-d252ac2c366bLog.txt" />
+    <Content Include="Recursos\Log\8c550dc0-85e0-4f38-b4ac-00740f73c080Log.txt" />
+    <Content Include="Recursos\Log\8cd39621-fe0f-434f-b938-f402833fd8bcLog.txt" />
+    <Content Include="Recursos\Log\8eb16c51-0ad9-48ec-9445-b05206cdbf6aLog.txt" />
+    <Content Include="Recursos\Log\8ed3b477-f8a8-41a2-90fe-b4bab2ff9eaeLog.txt" />
+    <Content Include="Recursos\Log\8f290964-a881-49a1-8e52-02bc5019030aLog.txt" />
+    <Content Include="Recursos\Log\906ff453-6f2e-4b51-b2bd-b00fd1fb0c75Log.txt" />
+    <Content Include="Recursos\Log\90979068-2c01-4363-b8a1-b47c81088845Log.txt" />
+    <Content Include="Recursos\Log\91a31bba-84bd-4990-a149-8a21ee010b3eLog.txt" />
+    <Content Include="Recursos\Log\92431754-a8cc-49a4-9772-b989cedef92bLog.txt" />
+    <Content Include="Recursos\Log\92c8dc56-266d-424b-beb0-2eb059a02ec6Log.txt" />
+    <Content Include="Recursos\Log\92d68920-ba3a-43db-aa6c-cc0082a04474Log.txt" />
+    <Content Include="Recursos\Log\93a76161-f2f0-4867-813c-01d3318977f8Log.txt" />
+    <Content Include="Recursos\Log\9423149e-f8ca-42ee-a2c3-a9f0394abea9Log.txt" />
+    <Content Include="Recursos\Log\9711da98-e079-4c7d-8443-aa91c6e589c1Log.txt" />
+    <Content Include="Recursos\Log\98b02910-0b23-44bc-9f40-bea4b8b5f429Log.txt" />
+    <Content Include="Recursos\Log\9b471480-be47-4832-899d-f4eb60c951daLog.txt" />
+    <Content Include="Recursos\Log\9b860093-391f-40fd-b2db-e796cf993182Log.txt" />
+    <Content Include="Recursos\Log\9e2f0dd3-b129-4a04-ab9a-8f16031731e9Log.txt" />
+    <Content Include="Recursos\Log\a07fb3af-94cc-4b8a-97b6-1569ca185580Log.txt" />
+    <Content Include="Recursos\Log\a19a0b71-1871-478a-9967-8cc813c3d769Log.txt" />
+    <Content Include="Recursos\Log\a9ee6385-4f3f-4d2b-bf5d-4ab773910a0fLog.txt" />
+    <Content Include="Recursos\Log\aa0b334b-4d27-440f-838f-e7d9078dbf46Log.txt" />
+    <Content Include="Recursos\Log\aaf147a8-feb6-423a-9266-fa258cac4594Log.txt" />
+    <Content Include="Recursos\Log\ade0ff28-0b7f-410b-a924-00679de35a33Log.txt" />
+    <Content Include="Recursos\Log\b0f885c4-ca99-448f-b630-f7a9fb46e365Log.txt" />
+    <Content Include="Recursos\Log\b4934d1d-9e3a-4456-b1df-135357672563Log.txt" />
+    <Content Include="Recursos\Log\b6e473d4-ed18-4115-b657-889012486e64Log.txt" />
+    <Content Include="Recursos\Log\bbbdc7c7-7969-490a-8bdc-3c54c23db244Log.txt" />
+    <Content Include="Recursos\Log\bdacab04-9706-4d58-88f9-c1ddecc158fdLog.txt" />
+    <Content Include="Recursos\Log\c2068f64-c553-4e60-af7c-f6931095ffa0Log.txt" />
+    <Content Include="Recursos\Log\c50fe4d8-f446-49ef-bc9b-0df13c1a9f8bLog.txt" />
+    <Content Include="Recursos\Log\c60d1b69-adec-4346-83c5-a9d29d69678fLog.txt" />
+    <Content Include="Recursos\Log\c764f550-a831-4006-bb3d-c538ea466edfLog.txt" />
+    <Content Include="Recursos\Log\c7d7f6be-5ab5-412d-9539-9205419cbda3Log.txt" />
+    <Content Include="Recursos\Log\c9d99d7d-cdb2-4b62-b90a-ac3fa0b148f2Log.txt" />
+    <Content Include="Recursos\Log\cd48b2e3-ea47-4b61-a6b0-b70d15528f2fLog.txt" />
+    <Content Include="Recursos\Log\d2ebd6e4-5937-4000-bf11-fe9a1bab87e0Log.txt" />
+    <Content Include="Recursos\Log\d656cd3e-acb9-4bd6-86dd-66304d9efd85Log.txt" />
+    <Content Include="Recursos\Log\da084156-b888-4dd0-ac9d-a8a8c8d64208Log.txt" />
+    <Content Include="Recursos\Log\dae9c3b5-1c5f-4724-9ee1-c1966fc1784aLog.txt" />
+    <Content Include="Recursos\Log\dd04884b-6f0d-4f1d-8d26-7c2d46e6b308Log.txt" />
+    <Content Include="Recursos\Log\de7753fb-2a60-4c38-a17a-92f80db5955eLog.txt" />
+    <Content Include="Recursos\Log\e8935f01-5509-4fe4-b4a6-906c1faefbc2Log.txt" />
+    <Content Include="Recursos\Log\ed45f532-adcb-4693-9c43-be5e931f50f7Log.txt" />
+    <Content Include="Recursos\Log\ee96597e-55c5-4449-9d18-3e1298d8560bLog.txt" />
+    <Content Include="Recursos\Log\ef37ffa8-fd91-4dc0-b8d0-8c7cc15e72b8Log.txt" />
+    <Content Include="Recursos\Log\ef80b00a-a7f5-4ad8-b164-341f44aa3c0bLog.txt" />
+    <Content Include="Recursos\Log\f00f8d7e-3ddf-43dc-9a9b-ee0993537209Log.txt" />
+    <Content Include="Recursos\Log\f1148497-5a54-442e-b3e6-71e601e59c1aLog.txt" />
+    <Content Include="Recursos\Log\f6d3ade3-0fa2-46de-a169-2420f8337deeLog.txt" />
+    <Content Include="Recursos\Log\f71dc310-75df-4626-8603-f57d7b282709Log.txt" />
+    <Content Include="Recursos\Log\fd0accf4-5b68-438a-9fc4-a4cca19a558cLog.txt" />
+    <Content Include="Recursos\Log\fdd3271d-8cc3-4d07-a703-4a92ada31cfeLog.txt" />
+    <Content Include="Recursos\Temporales\046db5e3-75d6-4b0e-a47d-0e9531fce457.png" />
+    <Content Include="Recursos\Temporales\22fad170-df94-4548-872f-7aa8a0e6c1d0.png" />
+    <Content Include="Recursos\Temporales\59f522d6-bb28-453e-8025-8b74cdfd92d4.png" />
+    <Content Include="Recursos\Temporales\c1e5ff52-14a6-49be-8ec9-7f182a5b88aa.png" />
     <Content Include="Scripts\General.js" />
     <Content Include="Scripts\inicializacion.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -4124,9 +4249,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administracion\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Capa_Entidad\Capa_Entidad.csproj">
+      <Project>{e02b0be9-1064-46fc-8a9c-4dc17fe12149}</Project>
+      <Name>Capa_Entidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Capa_Negocio\Capa_Negocio.csproj">
+      <Project>{aed3135f-88ca-4b81-b668-c2f5e49129d0}</Project>
+      <Name>Capa_Negocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,7 @@
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Datos\bin\Debug\Capa_Datos.dll
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Datos\bin\Debug\Capa_Datos.pdb
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Datos\bin\Debug\Capa_Entidad.dll
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Datos\bin\Debug\Capa_Entidad.pdb
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Datos\obj\Debug\Capa_Datos.csprojResolveAssemblyReference.cache
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Datos\obj\Debug\Capa_Datos.dll
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Datos\obj\Debug\Capa_Datos.pdb

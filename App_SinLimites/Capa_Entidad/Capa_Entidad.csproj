@@ -39,7 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Administracion\Cls_Ent_Banco.cs" />
+    <Compile Include="Administracion\Cls_Ent_Perfil.cs" />
+    <Compile Include="Administracion\Cls_Ent_Tipo_Documento.cs" />
+    <Compile Include="Administracion\Cls_Ent_Usuario.cs" />
+    <Compile Include="Base\Cls_Ent_Archivo.cs" />
+    <Compile Include="Base\Cls_Ent_Base.cs" />
+    <Compile Include="Cls_Ent_Auditoria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

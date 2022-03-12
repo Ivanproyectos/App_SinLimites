@@ -39,9 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Administracion\Cls_Rule_Banco.cs" />
+    <Compile Include="Administracion\Cls_Rule_Usuario.cs" />
+    <Compile Include="Combos\Cls_Rule_Combos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Capa_Datos\Capa_Datos.csproj">
+      <Project>{66b1fa29-cccb-4d4e-90ac-17be8248f83a}</Project>
+      <Name>Capa_Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Capa_Entidad\Capa_Entidad.csproj">
+      <Project>{e02b0be9-1064-46fc-8a9c-4dc17fe12149}</Project>
+      <Name>Capa_Entidad</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

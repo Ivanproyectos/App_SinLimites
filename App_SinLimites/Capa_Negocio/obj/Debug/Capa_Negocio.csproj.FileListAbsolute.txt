@@ -1,0 +1,9 @@
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Negocio\bin\Debug\Capa_Negocio.dll
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Negocio\bin\Debug\Capa_Negocio.pdb
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Negocio\bin\Debug\Capa_Datos.dll
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Negocio\bin\Debug\Capa_Entidad.dll
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Negocio\bin\Debug\Capa_Datos.pdb
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Negocio\bin\Debug\Capa_Entidad.pdb
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Negocio\obj\Debug\Capa_Negocio.csprojResolveAssemblyReference.cache
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Negocio\obj\Debug\Capa_Negocio.dll
+C:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Negocio\obj\Debug\Capa_Negocio.pdb

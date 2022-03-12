@@ -177,9 +177,6 @@
                                     <i class="bi bi-chevron-down"></i>
 
                                     <input type="hidden" id="input_hdcodusuario" value="iperez" />
-                                    <input type="hidden" id="inputL_SimboloMoneda" value="@ViewBag.SimboloMoneda" />
-                                    <input type="hidden" id="inputL_Impuesto" value="@ViewBag.IMPUESTO" />
-                                    <input type="hidden" id="inputL_NombreImpuesto" value="@ViewBag.NOMBRE_IMPUESTO" />
                                     <input type="hidden" id="inputL_Id_Sucursal" value="2" />
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right animate__bounceIn">
@@ -213,7 +210,7 @@
         <div class="quixnav">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
-             @*       <li><a class="has-arrow not-before" name="Admin/Prueba/Index" onclick="_LayoutInvocar(this)" id="aDasboard" aria-expanded="false">
+                    @*       <li><a class="has-arrow not-before" name="Admin/Prueba/Index" onclick="_LayoutInvocar(this)" id="aDasboard" aria-expanded="false">
                         <i class="icon icon-app-store"></i><span class="nav-text">Dasboard </span></a>
                         <ul aria-expanded="false">
                         </ul>
@@ -230,18 +227,17 @@
                     </li>
 
 
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                        class="bi bi-cart3"></i><span class="nav-text">Ventas</span></a>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <i class="bi bi-journals"></i><span class="nav-text">Gestión Líneas</span></a>
                         <ul aria-expanded="false">
-                            <li><a name="Ventas/Ventas/Index" onclick="_LayoutInvocar(this)" id="aVentas">Gestión Líneas</a></li>
                             <li><a href="./index2.html">Líneas </a></li>
                             <li><a href="./index2.html">Afiliados</a></li>
                             <li><a href="./index2.html">Consagrados</a></li>
                         </ul>
                     </li>
 
-                   <li><a class="has-arrow not-before" name="Admin/Prueba/Index" onclick="_LayoutInvocar(this)" id="aDasboard" aria-expanded="false">
-                        <i class="icon icon-app-store"></i><span class="nav-text">Gestión de Eventos </span></a>
+                    <li><a class="has-arrow not-before" name="Admin/Prueba/Index" onclick="_LayoutInvocar(this)" id="aDasboard" aria-expanded="false">
+                        <i class="bi bi-globe"></i><span class="nav-text">Gestión de Eventos </span></a>
                         <ul aria-expanded="false">
                         </ul>
                     </li>
@@ -282,7 +278,13 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Linksoft &amp; Developed by <a href="#" target="_blank">Ivans</a> 2022</p>
+                <p>
+                    Copyright © SinLimites 2022 
+                    <script>
+                        date = new Date().toLocaleDateString();
+                        document.write(date.getFullYear());
+                    </script>
+                </p>
 
             </div>
         </div>

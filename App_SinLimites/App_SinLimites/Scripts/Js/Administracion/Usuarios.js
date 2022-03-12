@@ -17,7 +17,7 @@ function Usuarios_Limpiar() {
 
 function Usuarios_ConfigurarGrilla() {
     $("#" + Usuarios_Grilla).GridUnload();
-    var colNames = ['Editar', 'Eliminar', 'Estado', 'codigo', 'ID','Es Jefe', 'Nombre y Apellidos','Clave Usuario','Codigo Usuario' ,'Tipo Documento', 'Dni', 'Celular','Telefono','Correo',
+    var colNames = ['Editar', 'Eliminar', 'Estado', 'codigo', 'ID','Perfil', 'Nombre y Apellidos','Clave Usuario','Codigo Usuario' ,'Tipo Documento', 'Dni', 'Celular','Telefono','Correo',
         'flg_estado', 'Fecha Creación', 'Usuario Creación', 'Fecha Modificación', 'Usuario Modificación'];
     var colModels = [
             { name: 'EDITAR', index: 'EDITAR', align: 'center', width: 60, hidden: false, formatter: Usuarios_actionEditar, sortable: false },
@@ -25,7 +25,7 @@ function Usuarios_ConfigurarGrilla() {
             { name: 'ACTIVO', index: 'ACTIVO', align: 'center', width: 70, hidden: false, sortable: true, formatter: Usuarios_actionActivo, sortable: false },
             { name: 'CODIGO', index: 'CODIGO', align: 'center', width: 100, hidden: true, },
             { name: 'ID_USUARIO', index: 'ID_USUARIO', width: 100, hidden: true, key: true },
-            { name: 'ES_JEFE', index: 'ES_JEFE', width: 100, hidden: false, align: "left" },
+            { name: 'DESC_PERFIL', index: 'DESC_PERFIL', width: 200, hidden: false, align: "left" },
             { name: 'NOMBRES_APE', index: 'NOMBRES_APE', width: 250, hidden: false, align: "left", formatter:Usuario_TextUsuario },
             { name: 'CLAVE_USUARIO', index: 'CLAVE_USUARIO', width: 150, hidden: false, align: "left" },
             { name: 'COD_USUARIO', index: 'COD_USUARIO', width: 100, hidden: true, align: "left" },
@@ -122,7 +122,7 @@ function Usuarios_CargarGrilla() {
                  {
                      CODIGO: idgrilla,
                      ID_USUARIO: v.ID_USUARIO,
-                     ES_JEFE : v.FLG_ADMIN == 1? 'SI' : 'NO',
+                     DESC_PERFIL: v.DESC_PERFIL,
                      NOMBRES_APE: v.NOMBRES_APE,
                      DESC_TIPO_DOCUMENTO: v.DESC_TIPO_DOCUMENTO,
                      DNI: v.DNI,
@@ -131,7 +131,6 @@ function Usuarios_CargarGrilla() {
                      CORREO: v.CORREO,
                      COD_USUARIO: v.COD_USUARIO,
                      CLAVE_USUARIO: v.CLAVE_USUARIO,
-                     FLG_ADMIN: v.FLG_ADMIN,
                      FLG_ESTADO: v.FLG_ESTADO,
                      FEC_CREACION: v.FEC_CREACION,
                      USU_CREACION: v.USU_CREACION,
@@ -166,7 +165,7 @@ function Usuarios_Actualizar() {
                     CELULAR: $("#CELULAR").val(),
                     TELEFONO: $("#TELEFONO").val(),
                     CORREO: $("#CORREO").val(),
-                    FLG_ADMIN: $("#FLG_ADMIN").is(':checked') ? 1 : 0,
+                    ID_PERFIL: $("#ID_PERFIL").val(),
                     COD_USUARIO: $("#COD_USUARIO").val(),
                     CLAVE_USUARIO: $("#CLAVE_USUARIO").val(),
                     ID_TIPO_DOCUMENTO: $("#ID_TIPO_DOCUMENTO").val(),
@@ -216,11 +215,10 @@ function Usuarios_Ingresar() {
                             CELULAR: $("#CELULAR").val(),
                             TELEFONO: $("#TELEFONO").val(),
                             CORREO: $("#CORREO").val(),
-                            FLG_ADMIN: $("#FLG_ADMIN").is(':checked') ? 1 : 0,
+                            ID_PERFIL: $("#ID_PERFIL").val(),
                             COD_USUARIO: $("#COD_USUARIO").val(),
                             CLAVE_USUARIO: $("#CLAVE_USUARIO").val(),
-                            ID_TIPO_DOCUMENTO: $("#ID_TIPO_DOCUMENTO").val(),
-                            
+                            ID_TIPO_DOCUMENTO: $("#ID_TIPO_DOCUMENTO").val(),                          
                             USU_CREACION: $('#input_hdcodusuario').val(),
                             ACCION: $("#AccionUsuarios").val()
                         };
@@ -230,17 +228,9 @@ function Usuarios_Ingresar() {
                         if (auditoria.EJECUCION_PROCEDIMIENTO) {
                             if (!auditoria.RECHAZAR) {
                                 Usuarios_CargarGrilla();
-                                //Usuarios_Cerrar();
-                                jOkas("Usuario registrado correctamente, a continuación configuré acceso al sistema para este usuario.", "Proceso");
-                                $('#hfd_ID_USUARIO').val(auditoria.OBJETO);
-                                $('#UsuariosTab, #Usuariospanel').removeClass('active');
-                                $('#Usuariospanel').removeClass('show ');
-
-                                $('#UsuariosAccesoTab').removeClass('DisabledContent'); 
-                                $('#UsuariosAccesoTab, #UsuariosAccesoPanel').addClass('active');
-                                $('#UsuariosAccesoPanel').addClass('show');
-                                $('#UsuariosTab').addClass('DisabledContent');
-                                $('#Usuarios_btn_Guardar').hide();
+                                Usuarios_Cerrar();
+                                jOkas("Usuario registrado correctamente", "Proceso");
+                        
 
                             } else {
                                 jError(auditoria.MENSAJE_SALIDA, "Atención");
