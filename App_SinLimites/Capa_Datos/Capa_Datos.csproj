@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Administracion\Cls_Dat_Usuario.cs" />
     <Compile Include="Administracion\Cls_Dat_Banco.cs" />
+    <Compile Include="Administracion\Cls_Dat_Contigencia.cs" />
     <Compile Include="Combos\Cls_Dat_Combos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protected\DataBaseHelper.cs" />

@@ -2,14 +2,8 @@
 
 <script>
     $(document).ready(function () {
-        $('#FLG_ADMIN').bootstrapToggle({
-            on: 'Si',
-            off: 'No',
-            //onstyle: "info"
-        });
         $('#CELULAR').numeric();
         $('#TELEFONO').numeric();
-        Usuarios_Perfil_ConfigurarGrilla();
         if ($('#AccionUsuarios').val() == "M") {
             $('#UsuariosAccesoTab').removeClass('DisabledContent')
         }

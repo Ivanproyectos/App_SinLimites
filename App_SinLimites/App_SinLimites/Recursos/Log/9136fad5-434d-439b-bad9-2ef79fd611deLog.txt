@@ -1,0 +1,4 @@
+System.IndexOutOfRangeException: ID_CONTINGENCIA
+   en System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   en System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   en Capa_Datos.Administracion.Cls_Dat_Contingencia.Contingencia_Listar(Cls_Ent_Contingencia entidad_param, Cls_Ent_Auditoria& auditoria) en c:\Users\ivans\OneDrive\Documentos\GitHub\App_SinLimites\App_SinLimites\Capa_Datos\Administracion\Cls_Dat_Contigencia.cs:línea 48

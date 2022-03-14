@@ -43,6 +43,7 @@
     <Compile Include="Administracion\Cls_Ent_Perfil.cs" />
     <Compile Include="Administracion\Cls_Ent_Tipo_Documento.cs" />
     <Compile Include="Administracion\Cls_Ent_Usuario.cs" />
+    <Compile Include="Administracion\Cls_Ent_Contingencia.cs" />
     <Compile Include="Base\Cls_Ent_Archivo.cs" />
     <Compile Include="Base\Cls_Ent_Base.cs" />
     <Compile Include="Cls_Ent_Auditoria.cs" />

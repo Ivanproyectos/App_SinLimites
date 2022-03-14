@@ -256,7 +256,7 @@ namespace Capa_Datos.Administracion
                     cmd.Parameters.Add(new SqlParameter("@PI_ID_BANCO", SqlDbType.Int)).Value = entidad.ID_BANCO;
                     cmd.Parameters.Add(new SqlParameter("@PI_FLG_ESTADO", SqlDbType.VarChar, 200)).Value = entidad.FLG_ESTADO;
                     cmd.Parameters.Add(new SqlParameter("@PI_IP_MODIFICACION", SqlDbType.VarChar, 200)).Value = entidad.IP_MODIFICACION;
-                    cmd.Parameters.Add(new SqlParameter("@PI_BANCO_MODIFICACION", SqlDbType.VarChar, 200)).Value = entidad.USU_MODIFICACION;
+                    cmd.Parameters.Add(new SqlParameter("@PI_USUARIO_MODIFICACION", SqlDbType.VarChar, 200)).Value = entidad.USU_MODIFICACION;
                     cmd.Parameters.Add(new SqlParameter("PO_VALIDO", SqlDbType.Int)).Direction = System.Data.ParameterDirection.Output;
                     if (cn.State != System.Data.ConnectionState.Open)
                     {

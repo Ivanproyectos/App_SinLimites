@@ -1,17 +1,85 @@
-﻿@{
-    Layout = null;
-}
+﻿<script src="@Url.Content("~/Scripts/Js/Administracion/Banco.js")" type="text/javascript"></script>
+<script type="text/javascript">
 
-<!DOCTYPE html>
+    $(document).ready(function () {
+        Banco_ConfigurarGrilla();
+        Banco_CargarGrilla();
+    });
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        
+    $("#Banco_btnBuscar").click(function (e) {
+        Banco_CargarGrilla();
+    });
+
+    $("#Banco_btnLimpiar").click(function (e) {
+        Banco_Limpiar();
+    });
+
+
+    $("#Banco_btnNuevo").click(function (e) {
+        Banco_MostrarNuevo();
+    });
+
+
+
+</script>
+
+<div class="modal fade" id="myModalNuevo" tabindex="" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+
+
+
+<div class="row ">
+    <div class="col-xl-12 col-xxl-12 col-lg-12 col-md-12">
+        <div class="card">
+            <div class="card-header border-bottom-head">
+                <h4 class="card-title">Criterios de Busqueda</h4>
+            </div>
+            <div class="card-body">
+
+                <div class="basic-form">
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label>Banco:</label>
+                            <input type="text" id="Banco_Desc_Banco" class="form-control" placeholder="">
+                        </div>
+
+              
+                        <div class="form-group col-md-3">
+                            <label>Estado:</label>
+                             <select   class="form-control" id="Banco_Estado" >
+                                 <option value="2">-- Seleccione --</option>
+                                 <option value="1">Activo</option>
+                                 <option value="0">Inactivo</option>
+                             </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <button type="button" id="Banco_btnBuscar" class="btn btn-hover-shine  btn-square btn-primary "><i class="fa fa-search"></i>&nbsp Buscar</button>
+                            <button type="button" id="Banco_btnLimpiar"  class="btn  btn-square btn-light"><i class="bi bi-arrow-clockwise"></i>&nbsp Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-</body>
-</html>
+</div>
+
+
+
+<div class="row ">
+    <div class="col-xl-12 col-xxl-12 col-lg-12 col-md-12">
+        <div class="card">
+            <div class="card-header">
+
+                <button id="Banco_btnNuevo" type="button" class="btn btn-hover-shine btn-square btn-primary " ><i class="bi bi-plus-square"></i>&nbsp Nuevo</button>
+            </div>
+            <div class="card-body">
+                <div class="jqGrid">
+                    <table id="Banco_Grilla"></table>
+                    <div id="Banco_Barra"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

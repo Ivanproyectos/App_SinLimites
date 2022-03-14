@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administracion\Cls_Rule_Banco.cs" />
+    <Compile Include="Administracion\Cls_Rule_Contingencia.cs" />
     <Compile Include="Administracion\Cls_Rule_Usuario.cs" />
     <Compile Include="Combos\Cls_Rule_Combos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

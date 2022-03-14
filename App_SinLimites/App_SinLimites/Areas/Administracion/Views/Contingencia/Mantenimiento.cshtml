@@ -1,0 +1,146 @@
+﻿@model App_SinLimites.Areas.Administracion.Models.ContingenciasModelView
+
+<script>
+    $(document).ready(function () {
+
+        $('#TELEFONO').numeric();
+        if ($('#AccionContingencias').val() == "M") {
+            $('#ContingenciasAccesoTab').removeClass('DisabledContent')
+        }
+
+    });
+
+
+    $('#Contingencias_btn_Guardar').click(function () {
+        Contingencias_Ingresar();
+    });
+
+
+
+    $('#ID_TIPO_DOCUMENTO').change(function () {
+        ChangeTipoDocumento($(this).val());
+    });
+
+
+    function ChangeTipoDocumento(_TipoDocumento) {
+        $('#DNI').val('');
+        if (_TipoDocumento == 1) {
+            $('#DNI').prop('maxlength', 8);
+        } else if (_TipoDocumento == 4 || _TipoDocumento == 7) {
+            $('#DNI').prop('maxlength', 12);
+        } else if (_TipoDocumento == 6) {
+            $('#DNI').prop('maxlength', 11);
+        }
+    }
+    function Cliente_SearchPersona() {
+        var _tipoDocumento = $('#ID_TIPO_DOCUMENTO').val();
+        if (_tipoDocumento == 1) {
+            BuscarPersonalNatural($('#DNI').val());
+        } else if (_tipoDocumento == 6) {
+            //BuscarPersonalJuridica($('#DNI').val());
+        } else {
+            jDanger('Tipo documento no valido para buscar.', 'Atención')
+        }
+    }
+
+
+
+</script>
+
+<style>
+    .DisabledContent {
+        pointer-events: none;
+        opacity: 0.4;
+    }
+</style>
+
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            @if (Model.ID_CONTINGENCIA == 0)
+            {
+                <h5 class="modal-title"><i class="bi bi-pencil-square"></i>&nbsp; Nuevo Contingencia</h5>
+            }
+            else
+            {
+                <h5 class="modal-title"><i class="bi bi-pencil-square"></i>&nbsp; Editar Contingencia</h5>
+            }
+            <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="tab-pane fade active show" id="Contingenciaspanel" role="tabpanel">
+                @using (Html.BeginForm("Contingencias", "Contingencias", new { @area = "Administracion" }, FormMethod.Post, new { @id = "frmMantenimiento_Contingencias" }))
+                {
+                    @Html.ValidationSummary(true)
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.ID_TIPO_DOCUMENTO)
+                            @Html.DropDownListFor(model => model.ID_TIPO_DOCUMENTO, Model.Lista_Tipo_Documento, new { @class = "form-control", @maxlength = "150", @style = "width:100%" })
+                            @Html.ValidationMessageFor(model => model.ID_TIPO_DOCUMENTO, string.Empty, new { @class = "cssMessageError animated  fadeInUp" })
+                        </div>
+
+
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.NUMERO_DOCUMENTO)
+                            <div class="input-group mb-12 ">
+                                @Html.TextBoxFor(model => model.NUMERO_DOCUMENTO, new { @class = "form-control", @maxlength = "200", @autocomplete = "off" })
+                                <div class="input-group-append  btn-hover-shine waves-effect waves-light" onclick="Cliente_SearchPersona()">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.NUMERO_DOCUMENTO, string.Empty, new { @class = "cssMessageError animated  fadeInUp" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.NOMBRE)
+                            @Html.TextBoxFor(model => model.NOMBRE, new { @class = "form-control", @maxlength = "200", @autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.NOMBRE, string.Empty, new { @class = "cssMessageError animated  fadeInUp" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.APELLIDO_PATERNO)
+                            @Html.TextBoxFor(model => model.APELLIDO_PATERNO, new { @class = "form-control", @maxlength = "200", @autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.APELLIDO_PATERNO, string.Empty, new { @class = "cssMessageError animated  fadeInUp" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.APELLIDO_MATERNO)
+                            @Html.TextBoxFor(model => model.APELLIDO_MATERNO, new { @class = "form-control", @maxlength = "200", @autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.APELLIDO_MATERNO, string.Empty, new { @class = "cssMessageError animated  fadeInUp" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.CARGO)
+                            @Html.TextBoxFor(model => model.CARGO, new { @class = "form-control", @maxlength = "9", @autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.CARGO, string.Empty, new { @class = "cssMessageError animated  fadeInUp" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.TELEFONO)
+                            @Html.TextBoxFor(model => model.TELEFONO, new { @class = "form-control", @maxlength = "7", @autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.TELEFONO, string.Empty, new { @class = "cssMessageError animated  fadeInUp" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.CORREO)
+                            @Html.TextBoxFor(model => model.CORREO, new { @class = "form-control", @maxlength = "100", @autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.CORREO, string.Empty, new { @class = "cssMessageError animated  fadeInUp" })
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="Contingencias_btn_Guardar" class="btn btn-hover-shine btn-square btn-primary"><i class="bi bi-save2"></i>&nbsp; Guardar</button>
+            <button type="button" class="btn  btn-square btn-dark" data-dismiss="modal">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+
+@Html.Hidden("hfd_ID_CONTINGENCIA", Model.ID_CONTINGENCIA)
+@Html.Hidden("AccionContingencias", Model.Accion)
