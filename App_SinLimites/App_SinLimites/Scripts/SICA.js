@@ -909,6 +909,7 @@ SICA = {
                     }
                 },
                 datatype: function (postdata) {
+                    debugger; 
                     var migrilla = new Object();
                     migrilla.page = postdata.page;
                     migrilla.rows = postdata.rows;

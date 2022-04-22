@@ -164,6 +164,7 @@
     <Compile Include="Areas\Administracion\AdministracionAreaRegistration.cs" />
     <Compile Include="Areas\Administracion\Controllers\BancoController.cs" />
     <Compile Include="Areas\Administracion\Controllers\ContingenciaController.cs" />
+    <Compile Include="Areas\Administracion\Controllers\PruebaController.cs" />
     <Compile Include="Areas\Administracion\Controllers\UsuariosController.cs" />
     <Compile Include="Areas\Administracion\Models\BancosModelView.cs" />
     <Compile Include="Areas\Administracion\Models\ContingenciasModelView.cs" />
@@ -185,6 +186,12 @@
     <Compile Include="Recursos\Clases\Css_IP.cs" />
     <Compile Include="Recursos\Clases\Css_Log.cs" />
     <Compile Include="Recursos\Clases\Css_Ruta.cs" />
+    <Compile Include="Recursos\Paginacion\Css_Filter.cs" />
+    <Compile Include="Recursos\Paginacion\Css_Paginacion.cs" />
+    <Compile Include="Recursos\Paginacion\Css_Row.cs" />
+    <Compile Include="Recursos\Paginacion\Css_Rule.cs" />
+    <Compile Include="Recursos\Paginacion\GridTable.cs" />
+    <Compile Include="Recursos\Paginacion\JQgrid.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\animate.min.css" />
@@ -3427,6 +3434,7 @@
     <Content Include="assets\vendor\datatables.net-bs4\css\dataTables.bootstrap4.min.css" />
     <Content Include="assets\vendor\datatables.net-bs4\js\dataTables.bootstrap4.min.js" />
     <Content Include="assets\vendor\datatables\css\jquery.dataTables.min.css" />
+    <Content Include="assets\vendor\datatables\dataTables.responsive.min.js" />
     <Content Include="assets\vendor\datatables\images\favicon.ico" />
     <Content Include="assets\vendor\datatables\images\sort_asc.png" />
     <Content Include="assets\vendor\datatables\images\sort_asc_disabled.png" />
@@ -3434,6 +3442,7 @@
     <Content Include="assets\vendor\datatables\images\sort_desc.png" />
     <Content Include="assets\vendor\datatables\images\sort_desc_disabled.png" />
     <Content Include="assets\vendor\datatables\js\jquery.dataTables.min.js" />
+    <Content Include="assets\vendor\datatables\responsive.dataTables.min.css" />
     <Content Include="assets\vendor\datedropper\datedropper.min.css" />
     <Content Include="assets\vendor\datedropper\datedropper.min.js" />
     <Content Include="assets\vendor\datedropper\dd-icon\dd-icon.svg" />
@@ -4066,6 +4075,7 @@
     <Content Include="Areas\Administracion\Views\Banco\Mantenimiento.cshtml" />
     <Content Include="Areas\Administracion\Views\Contingencia\Index.cshtml" />
     <Content Include="Areas\Administracion\Views\Contingencia\Mantenimiento.cshtml" />
+    <Content Include="Areas\Administracion\Views\Prueba\Index.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Recursos\Log\00fa0d13-2806-457d-854d-4cb301cce36dLog.txt" />
     <Content Include="Recursos\Log\03913484-39c5-4bcc-955b-50d5c31d5ab0Log.txt" />
@@ -4176,6 +4186,7 @@
     <Content Include="Recursos\Temporales\22fad170-df94-4548-872f-7aa8a0e6c1d0.png" />
     <Content Include="Recursos\Temporales\59f522d6-bb28-453e-8025-8b74cdfd92d4.png" />
     <Content Include="Recursos\Temporales\c1e5ff52-14a6-49be-8ec9-7f182a5b88aa.png" />
+    <Content Include="Scripts\Utils.js" />
     <Content Include="Scripts\General.js" />
     <Content Include="Scripts\inicializacion.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />

@@ -1,0 +1,122 @@
+﻿<script src="@Url.Content("assets/vendor/datatables/js/jquery.dataTables.min.js")"></script>
+<script src="@Url.Content("assets/vendor/datatables/dataTables.responsive.min.js")"></script>
+<!-- Datatable -->
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="example" class="display" style="width: 100%">
+       
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var url = baseUrl + 'Administracion/Prueba/Ventas_Paginado';
+    var Usuarios_Grilla = "example";
+    var colModels = [
+          { "data": "ID", "name": "ID", "title": "ID", "autoWidth": true, "class": "read_only" },
+          { "data": "TANIM", "name": "TANIM", "title": "TANIM", "autoWidth": true },
+          { "data": "SKOD", "name": "SKOD", "title": "SKOD", "autoWidth": true },
+          { "data": "BARKOD", "name": "BARKOD", "title": "BARKOD", "autoWidth": true }
+          ]; 
+ var opciones = {
+     GridLocal: false, multiselect: false, CellEdit: false, Editar: false, nuevo: false, sort: "desc" , PositionColumnSort: 3 , // numero columna para ordenar
+     eliminar: false, search: false, rowNumber: 10, rowNumbers: [10, 25, 50], rules: true
+ };
+
+ UTILS.Grilla(Usuarios_Grilla, null, null, 400, '', "Lista de Usuarios", url, 'ID_USUARIO', null, colModels, opciones);
+
+ function GetRules(Ventas_Grilla) {
+     var rules = new Array();
+     var FECHA_VENTA = moment().format('DD/MM/YYYY');
+     var ID_TIPO_COMPROBANTE = jQuery('#ID_TIPO_COMPROBANTE_SEARCH').val() == '' ? null : "'" + jQuery('#ID_TIPO_COMPROBANTE_SEARCH').val() + "'";
+     var ID_TIPO_PAGO = jQuery('#ID_TIPO_PAGO_SEARCH').val() == '' ? null : "'" + jQuery('#ID_TIPO_PAGO_SEARCH').val() + "'";
+     var CODIGO_VENTA = "'" + jQuery('#Ventas_CodigoVenta').val() + "'";
+     var _USUARIO_LOGEADO = "'" + jQuery('#input_hdcodusuario').val() + "'";
+
+     var POR = "'%'";
+     rules = []
+     rules.push({ field: 'UPPER(COD_COMPROBANTE)', data: POR + ' + ' + CODIGO_VENTA + ' + ' + POR, op: " LIKE " });
+     rules.push({ field: 'ID_TIPO_COMPROBANTE', data: '  ISNULL(' + ID_TIPO_COMPROBANTE + ',ID_TIPO_COMPROBANTE) ', op: " = " });
+     rules.push({ field: 'ID_TIPO_PAGO', data: '  ISNULL(' + ID_TIPO_PAGO + ',ID_TIPO_PAGO) ', op: " = " });
+     rules.push({ field: 'CONVERT(DATE,FEC_CREACION,103)', data: 'CONVERT(DATE,\'' + FECHA_VENTA + '\',103) ', op: " = " });
+     rules.push({ field: 'UPPER(COD_COMPROBANTE)', data: POR + ' + ' + CODIGO_VENTA + ' + ' + POR, op: " LIKE " });
+     rules.push({ field: 'UPPER(USU_CREACION)', data: _USUARIO_LOGEADO, op: " = " });
+
+     return rules;
+ }
+
+    //(function ($) {
+    //    "use strict"
+    //    //example 1
+    //    var table = $('#example').DataTable({
+    //        createdRow: function (row, data, index) {
+    //            $(row).addClass('selected')
+    //        },
+    //        responsive: true,
+    //        language: {
+    //            "lengthMenu": "Mostrar _MENU_ registros",
+    //            "zeroRecords": "No se encontró nada",
+    //            "info": "Mostrando del _START_ al _END_ de un total de _TOTAL_",
+    //            "infoEmpty": "No hay registros",
+    //            "emptyTable": "No hay datos para mostrar",
+    //            "loadingRecords": "Cargando...",
+    //            "processing": "Procesando...",
+    //            "search": "Buscar:",
+    //            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+    //            "paginate": {
+    //                "first": "Primera",
+    //                "last": "Última",
+    //                "next": "Siguiente",
+    //                "previous": "Anterior"
+    //            }
+    //        },
+    //        columns: [
+    //         { "data": "ID", "name": "ID", "title": "ID", "autoWidth": true, "class": "read_only" },
+    //         { "data": "TANIM", "name": "TANIM", "title": "TANIM", "autoWidth": true },
+    //         { "data": "SKOD", "name": "SKOD", "title": "SKOD", "autoWidth": true },
+    //         { "data": "BARKOD", "name": "BARKOD", "title": "BARKOD", "autoWidth": true }
+    //        ],
+
+    //        datatype: function (postdata) {
+          
+    //            }
+    //    });
+
+
+    //         table.row.add( {
+    //             "ID": "Tiger Nixon",
+    //             "TANIM": "System Architect",
+    //             "SKOD": "$3,120",
+    //             "BARKOD": "2011/04/25"
+    //         } ).draw();
+
+    
+
+    //    table.on('click', 'tbody tr', function () {
+    //        var $row = table.row(this).nodes().to$();
+    //        var hasClass = $row.hasClass('selected');
+    //        if (hasClass) {
+    //            $row.removeClass('selected')
+    //        } else {
+    //            $row.addClass('selected')
+    //        }
+    //    })
+
+    //    table.rows().every(function () {
+    //        this.nodes().to$().removeClass('selected')
+    //    });
+
+
+
+    //    //example 2
+   
+
+    //})(jQuery);
+
+
+</script>

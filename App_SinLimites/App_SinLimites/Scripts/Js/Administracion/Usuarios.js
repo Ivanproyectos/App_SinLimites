@@ -41,7 +41,7 @@ function Usuarios_ConfigurarGrilla() {
             { name: 'USU_MODIFICACION', index: 'USU_MODIFICACION', width: 150, hidden: false, align: "left" },
     ];
     var opciones = {
-        GridLocal: true, multiselect: false, CellEdit: false, Editar: false, nuevo: false, eliminar: false, search: false ,rowNumber: 50, rowNumbers: [50, 100, 200, 300, 500],
+        GridLocal: true, multiselect: false, CellEdit: false, Editar: false, nuevo: false, eliminar: false, search: false ,rowNumber: 10, rowNumbers: [10, 25, 30, 50],
     };
     SICA.Grilla(Usuarios_Grilla, Usuarios_Barra, Usuarios_Grilla, 400, '', "Lista de Usuarios", '', 'ID_USUARIO', colNames, colModels, '', opciones);
 }
