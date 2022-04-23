@@ -104,15 +104,15 @@ namespace App_SinLimites.Recursos.Paginacion
             return filtros.rules.Count == 0 ? string.Empty : (string)whereFiltro.Substring(4);
         }
 
-        public static string GetWhere(string filters, List<Css_Rule> rules)
+        public static string GetWhere(List<Css_Rule> SearchFields, string searchString, List<Css_Rule> rules)
         {
             var @where = string.Empty;
-            var filtro = (string.IsNullOrEmpty(filters)) ? null : JsonConvert.DeserializeObject<Css_Filter>(filters);
+            //var filtro = (string.IsNullOrEmpty(filters)) ? null : JsonConvert.DeserializeObject<Css_Filter>(filters);
 
-            if ((filtro != null))
-            {
-                @where = ConvertToSql(filtro);
-            }
+            //if ((filtro != null))
+            //{
+            //    @where = ConvertToSql(filtro);
+            //}
             if ((rules != null))
             {
                 foreach (var regla in rules)
@@ -138,6 +138,36 @@ namespace App_SinLimites.Recursos.Paginacion
                         }
                     }
                 }
+            }
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                if ((SearchFields != null))
+                {
+                    var @whereSearch = string.Empty;
+                    int count = 0; 
+                    foreach (var regla in SearchFields)
+                    {
+                         
+                        if ((regla != null))
+                        {
+                            if ((!string.IsNullOrEmpty(regla.field.ToUpper())))
+                            {
+                                if (count == 0)
+                                    @whereSearch = "(" + regla.field.ToUpper() + " like '%" + searchString + "%' ";
+                                else
+                                    @whereSearch += " OR " + regla.field.ToUpper() + " like '%" + searchString + "%' ";
+                                    count++; 
+                            }
+                        }
+                    }
+                    @whereSearch += ")";
+                    if (!string.IsNullOrEmpty(@where))
+                        @where += " and " + @whereSearch;
+                    else
+                        @where = @whereSearch; 
+                }
+          
             }
 
             return string.IsNullOrEmpty(@where) ? where : (where.StartsWith(" and ") ? where.Substring(4) : where);

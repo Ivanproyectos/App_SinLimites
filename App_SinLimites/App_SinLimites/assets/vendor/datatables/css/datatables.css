@@ -9,6 +9,9 @@
  * Included libraries:
  *   DataTables 1.11.5
  */
+
+@import url('select.dataTables.css');
+
 table.dataTable {
     width: 100%;
     margin: 0 auto;

@@ -13,10 +13,9 @@ namespace App_SinLimites.Recursos.Paginacion
         public string sord { get; set; }
         public string _search { get; set; }
         public int start { get; set; }
-        public string searchOper { get; set; }
         public string searchString { get; set; }
-        public string filters { get; set; }
         public List<Css_Rule> rules { get; set; }
+        public List<Css_Rule> SearchFields { get; set; }
         public string parameters { get; set; }
 
 

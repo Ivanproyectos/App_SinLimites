@@ -13593,7 +13593,7 @@ input[type="checkbox"]:after {
   margin-left: -1px;
   border: 1px solid transparent;
   border-radius: 3px;
-  background: #d4d7da;
+  /*background: #d4d7da;*/
   line-height: 1.3; }
 
 input[type="checkbox"]:checked:after {

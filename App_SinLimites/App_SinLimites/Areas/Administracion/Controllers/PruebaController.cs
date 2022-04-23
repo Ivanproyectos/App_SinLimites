@@ -23,19 +23,10 @@ namespace App_SinLimites.Areas.Administracion.Controllers
         {
             Cls_Ent_Auditoria auditoria = new Cls_Ent_Auditoria();
              try{
-                   //grid.page = (grid.page == 0) ? 1 : grid.page;
                 grid.rows = (grid.rows == 0) ? 100 : grid.rows;
 
-                var @where = (Recursos.Paginacion.Css_Paginacion.GetWhere(grid.filters, grid.rules));
-                if (!string.IsNullOrEmpty(@where))
-                {
-                    //grid._search = true;
-                    if (!string.IsNullOrEmpty(grid.searchString))
-                    {
-                        @where = @where + " and ";
-                    }
-                }
-                else
+                var @where = (Recursos.Paginacion.Css_Paginacion.GetWhere(grid.SearchFields,grid.searchString, grid.rules));
+                if (string.IsNullOrEmpty(@where))
                 {
                     @where = @where + " 1=1 ";
                 }
