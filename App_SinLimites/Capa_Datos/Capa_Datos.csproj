@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion\Cls_Dat_Ubigeo.cs" />
     <Compile Include="Administracion\Cls_Dat_Usuario.cs" />
     <Compile Include="Administracion\Cls_Dat_Banco.cs" />
     <Compile Include="Administracion\Cls_Dat_Contigencia.cs" />

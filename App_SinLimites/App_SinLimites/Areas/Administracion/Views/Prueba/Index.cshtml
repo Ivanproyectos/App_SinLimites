@@ -18,14 +18,14 @@
     var url = baseUrl + 'Administracion/Prueba/Ventas_Paginado';
     var Usuarios_Grilla = "example";
     var colModels = [
-          { "data": "ID", "name": "ID", "title": "ID", "autoWidth": true, "class": "read_only" },
-          { "data": "TANIM", "name": "TANIM", "title": "TANIM", "autoWidth": true },
-          { "data": "SKOD", "name": "SKOD", "title": "SKOD", "autoWidth": true },
-          { "data": "BARKOD", "name": "BARKOD", "title": "BARKOD", "autoWidth": true }
+          { "data": "COD_UBIGEO", "name": "COD_UBIGEO", "title": "COD_UBIGEO", "autoWidth": true, "class": "read_only" },
+          { "data": "COD_UBIGEO_PADRE", "name": "COD_UBIGEO_PADRE", "title": "COD_UBIGEO_PADRE", "autoWidth": true },
+          { "data": "DESC_UBIGEO", "name": "DESC_UBIGEO", "title": "DESC_UBIGEO", "autoWidth": true },
+          { "data": "TIP_ZONA_GEO", "name": "TIP_ZONA_GEO", "title": "TIP_ZONA_GEO", "autoWidth": true }
           ]; 
  var opciones = {
-     GridLocal: false, multiselect: false, CellEdit: false, Editar: false, nuevo: false, sort: "desc" , PositionColumnSort: 3 , // numero columna para ordenar
-     eliminar: false, search: false, rowNumber: 10, rowNumbers: [10, 25, 50], rules: true
+     GridLocal: false, multiselect: false, CellEdit: false, Editar: false, nuevo: false, sort: "desc" , PositionColumnSort: 1 , // numero columna para ordenar
+     eliminar: false, search: true, rowNumber: 10, rowNumbers: [10, 25, 50], rules: true
  };
 
  UTILS.Grilla(Usuarios_Grilla, null, null, 400, '', "Lista de Usuarios", url, 'ID_USUARIO', null, colModels, opciones);
@@ -40,12 +40,13 @@
 
      var POR = "'%'";
      rules = []
+     /*
      rules.push({ field: 'UPPER(COD_COMPROBANTE)', data: POR + ' + ' + CODIGO_VENTA + ' + ' + POR, op: " LIKE " });
      rules.push({ field: 'ID_TIPO_COMPROBANTE', data: '  ISNULL(' + ID_TIPO_COMPROBANTE + ',ID_TIPO_COMPROBANTE) ', op: " = " });
      rules.push({ field: 'ID_TIPO_PAGO', data: '  ISNULL(' + ID_TIPO_PAGO + ',ID_TIPO_PAGO) ', op: " = " });
      rules.push({ field: 'CONVERT(DATE,FEC_CREACION,103)', data: 'CONVERT(DATE,\'' + FECHA_VENTA + '\',103) ', op: " = " });
      rules.push({ field: 'UPPER(COD_COMPROBANTE)', data: POR + ' + ' + CODIGO_VENTA + ' + ' + POR, op: " LIKE " });
-     rules.push({ field: 'UPPER(USU_CREACION)', data: _USUARIO_LOGEADO, op: " = " });
+     rules.push({ field: 'UPPER(USU_CREACION)', data: _USUARIO_LOGEADO, op: " = " }); */ 
 
      return rules;
  }

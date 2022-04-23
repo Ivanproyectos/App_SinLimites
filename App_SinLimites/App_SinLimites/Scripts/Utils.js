@@ -46,75 +46,80 @@
 
         var rowKey;
         var lasRowKey;
-
+        var DataTable = null; 
         if (!opciones.GridLocal) {
-            debugger; 
-            grid.DataTable({
-                createdRow: function (row, data, index) {
-                    $(row).addClass('selected')
-                },
-                 responsive: true,
-                    "processing": true,
-                    "serverSide": true,
-                    "lengthMenu": opciones.rowNumbers,
-                    pageLength: opciones.rowNumber,
-                    "order": [[opciones.PositionColumnSort, opciones.sort]],
-                    "searching": opciones.search,
-                    rowId : id, 
-                    ajax: {
-                        type :"POST",
-                        url: urlListar,
-                        contentType: 'application/json; charset=utf-8',
-                        dataType: "json",
-                        data: function (dtParms) {
-                            debugger; 
-                            var migrilla = new Object();                      
-                            migrilla.page = dtParms.draw;
-                            migrilla.rows = dtParms.length;
-                            migrilla.columns = dtParms.columns;
-                            migrilla.draw = dtParms.draw;
-                            migrilla.start = dtParms.start;
-                            migrilla.sidx = dtParms.columns[dtParms.order[0].column].name;
-                            migrilla.length = dtParms.length;
-                            migrilla._search = dtParms.search;
-                            //migrilla.filters = postdata.filters;
-                            if (opciones.rules != false) {
-                                migrilla.Rules = GetRules(grilla);
-                            }
-                            var params = { grid: migrilla };
-                            return JSON.stringify(params);
-                        },
-                        dataFilter: function (res) {
-                            //recibimos del servidor
+            DataTable = grid.DataTable({
+                //createdRow: function (row, data, index) {
+                //    $(row).addClass('selected')
+                //},
+                responsive: true,
+                "processing": true,
+                "serverSide": true,
+                "lengthMenu": opciones.rowNumbers,
+                pageLength: opciones.rowNumber,
+                "order": [[opciones.PositionColumnSort, opciones.sort]],
+                "searching": opciones.search,
+                rowId: id,
+
+                ajax: {
+                    type: "POST",
+                    url: urlListar,
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: "json",
+                    data: function (dtParms) {
+                        debugger;
+                        var migrilla = new Object();
+                        migrilla.draw = dtParms.draw;
+                        migrilla.rows = dtParms.length;
+                        migrilla.start = dtParms.start;
+                        migrilla.sidx = dtParms.columns[dtParms.order[0].column].name;
+                        migrilla.sord =  dtParms.order[0].dir;
+                        migrilla._search = dtParms.search;
+                        //migrilla.filters = postdata.filters;
+                        if (opciones.rules != false) {
+                            migrilla.Rules = GetRules(grilla);
+                        }
+                        var params = { grid: migrilla };
+                        return JSON.stringify(params);
+                    },
+                    dataFilter: function (res) {
+                        //recibimos del servidor
+                        debugger;
+                        if (res != null && res != "") {
                             var parsed = JSON.parse(res);
-                            return JSON.stringify(parsed.d);
-                        },
-                        error: function (x, y) {
-                            console.log(x);
+                            return JSON.stringify(parsed);
+                        }
+                        else {
+                            alert('Error with AJAX callback');
                         }
                     },
-                    "filter": true,
-                    columns: colsModel,
-                    language: {
-                        "lengthMenu": "Mostrar _MENU_ registros",
-                        "zeroRecords": "No se encontró nada",
-                        "info": "Mostrando del _START_ al _END_ de un total de _TOTAL_",
-                        "infoEmpty": "No hay registros",
-                        "emptyTable": "No hay datos para mostrar",
-                        "loadingRecords": "Cargando...",
-                        "processing": "Procesando...",
-                        "search": "Buscar:",
-                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                        "paginate": {
-                            "first": "Primera",
-                            "last": "Última",
-                            "next": "Siguiente",
-                            "previous": "Anterior"
-                        }
-                    },
+                    error: function (x, y) {
+                        console.log(x);
+                    }
+                },
+                "filter": true,
+                columns: colsModel,
+                language: {
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No se encontró nada",
+                    "info": "Mostrando del _START_ al _END_ de un total de _TOTAL_",
+                    "infoEmpty": "No hay registros",
+                    "emptyTable": "No hay datos para mostrar",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "paginate": {
+                        "first": "Primera",
+                        "last": "Última",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
 
-                });
+            });
 
+  
         } // fin de NO GridLocal
         else if (opciones.GridLocal) {
             $('#' + grilla).jqGrid({
@@ -325,118 +330,18 @@
             );
 
         } // fin de GridLocal
+   
+        $('#' + grilla + ' tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                DataTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
 
-        if (opciones.eliminar) {
-            $('#' + grilla).navButtonAdd('#' + pager, {
-                caption: opciones.btnEliminar != null ? opciones.btnEliminar.Caption : opciones.EliminarCaption,
-                title: opciones.btnEliminar != null ? opciones.btnEliminar.Caption : opciones.EliminarCaption,
-                buttonicon: 'ui-icon-trash',
-                position: 'first',
-                onClickButton: function () {
-                    if (rowKey != null) {
-                        if (opciones.btnEliminar == null) {
-                            SICA.confirm(opciones.Mensaje, function () { Eliminar(); }, '', opciones.dialogDelete, opciones.Lenguaje);
-                        }
-                        else {
-                            if (opciones.btnEliminar.Mensaje != null && opciones.btnEliminar.Mensaje != '') {
-                                SICA.confirm(opciones.btnEliminar.Mensaje, function () { opciones.btnEliminar.Function(rowKey); }, '', opciones.btnEliminar.titleMensaje, opciones.Lenguaje);
-                            }
-                            else {
-                                opciones.btnEliminar.Function(rowKey);
-                            }
-                        }
-                    } else {
-                        if (opciones.Alert == null) {
-                            SICA.Alert(opciones.dialogAlert, opciones.Mensaje, '', opciones.Lenguaje);
-                        }
-                        else {
-                            SICA.Alert(opciones.Alert.titleMensaje, opciones.Alert.Mensaje, '', opciones.Lenguaje);
-                        }
-                    }
-                }
-            });
-        }
-
-        if (opciones.editar) {
-            $('#' + grilla).navButtonAdd('#' + pager, {
-                caption: opciones.EditarCaption,
-                title: opciones.EditarCaption,
-                buttonicon: 'ui-icon-pencil',
-                position: 'first',
-                onClickButton: function () {
-                    if (rowKey != null) {
-                        if (opciones.btnEditar == null) {
-                            Editar(rowKey);
-                        }
-                        else {
-                            opciones.btnEditar.Function(rowKey);
-                        }
-                    } else {
-                        if (opciones.Alert == null) {
-                            SICA.Alert(opciones.dialogAlert, opciones.Mensaje, '', opciones.Lenguaje);
-                        }
-                        else {
-                            SICA.Alert(opciones.Alert.titleMensaje, opciones.Alert.Mensaje, '', opciones.Lenguaje);
-                        }
-                    }
-                }
-            });
-        }
-        if (opciones.leyenda) {
-            $('#' + grilla).navButtonAdd('#' + pager, {
-                caption: opciones.LeyendaCaption,
-
-                title: opciones.LeyendaCaption,
-                buttonicon: 'ui-icon-search',
-                position: 'first',
-                id: "L" + grilla,
-                onClickButton: function () {
-                    opciones.verLeyenda();
-                    //if (opciones.btnNuevo == null) {
-                    //    Nuevo(rowKey);
-                    //}
-                    //else {
-                    //    opciones.btnNuevo.Function(rowKey);
-                    //}
-                }
-            });
-        }
-        if (opciones.nuevo) {
-            $('#' + grilla).navButtonAdd('#' + pager, {
-                caption: opciones.NuevoCaption,
-                title: opciones.NuevoCaption,
-                buttonicon: 'ui-icon-plus',
-                position: 'first',
-                onClickButton: function () {
-                    if (opciones.btnNuevo == null) {
-                        Nuevo(rowKey);
-                    }
-                    else {
-                        opciones.btnNuevo.Function(rowKey);
-                    }
-                }
-            });
-        }
-        if (opciones.exportar) {
-            $('#' + grilla).navButtonAdd('#' + pager, {
-                caption: 'Exportar a excel',
-                title: 'Exportar a excel',
-                buttonicon: 'ui-icon-arrowreturnthick-1-s',
-                position: 'first',
-                id: "E" + grilla,
-                onClickButton: function () {
-                    opciones.exportarExcel('#' + grilla);
-                    //if (opciones.btnNuevo == null) {
-                    //    Nuevo(rowKey);
-                    //}
-                    //else {
-                    //    opciones.btnNuevo.Function(rowKey);
-                    //}
-                }
-            });
-        }
-        var funccion = 'SICA.LayoutBarra("' + pager.toString() + '")';
-        setTimeout(funccion, 1000);
-    },
+    }
+       
 
 }

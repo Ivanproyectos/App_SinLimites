@@ -143,57 +143,15 @@ namespace App_SinLimites.Recursos.Paginacion
             return string.IsNullOrEmpty(@where) ? where : (where.StartsWith(" and ") ? where.Substring(4) : where);
         }
 
-        public static GenericDouble<JQgrid, T> BuscarPaginador<T>( int page, int rows, int count , IList<T> list) where T : class
+        public static GenericDouble<JQgrid, T> BuscarPaginador<T>( int draw, int count , IList<T> list) where T : class
         {
             JQgrid jqgrid = new JQgrid();
             //IList<T> list;
             try
             {
-                int totalPages = 0;
-                //if (search)
-                //{
-                //    @where = (@where + GetWhere(searchField, searchOper, searchString));
-                //}
-              //  int count = 0;
-
-                if (((count > 0) & (rows > 0)))
-                {
-                    decimal division = (count / rows);
-                    int totalpaginas = (int)Math.Truncate(division);
-                    //(count Mod rows) > 0
-                    if ((count > (totalpaginas * rows)))
-                    {
-                        //totalPages = CType(Math.Ceiling(CType((count / rows), Decimal)), Integer)
-                        //totalPages = (CType((count / rows), Integer) + 1)
-                        totalPages = totalpaginas + 1;
-                    }
-                    else
-                    {
-                        totalPages = totalpaginas;
-                        //CType((count / rows), Integer)
-                    }
-                    //totalPages = (int)Math.Ceiling((decimal)(count / rows));
-                    totalPages = (totalPages == 0 ? 1 : totalPages);
-                    //TODO: Warning!!!, inline IF is not supported ?
-                }
-                page = (page > totalPages ? totalPages : page);
-                int start = ((rows * page) - rows);
-                if ((start < 0))
-                {
-                    start = 0;
-                }
-                jqgrid.total = totalPages;
-                jqgrid.page = page;
-                jqgrid.records = count;
-                jqgrid.start = start;
-                //if (id == 1)
-                //{
-                //    list = logic.OrdenExpedienteBuscar(sidx, sord, rows, page, @where);
-                //}
-                //else
-                //{
-                //    list = logic.OrdenExpedienteBuscar_dup(sidx, sord, rows, page, @where);
-                //}
+                jqgrid.draw = draw;
+                jqgrid.recordsFiltered = count;
+                jqgrid.recordsTotal = count; 
 
             }
             catch (Exception ex)
