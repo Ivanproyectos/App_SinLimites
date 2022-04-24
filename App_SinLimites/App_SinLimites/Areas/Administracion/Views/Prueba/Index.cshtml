@@ -1,19 +1,104 @@
 ﻿<script src="@Url.Content("assets/vendor/datatables/js/jquery.dataTables.min.js")"></script>
-<script src="@Url.Content("assets/vendor/datatables/dataTables.responsive.min.js")"></script>
+@*<script src="@Url.Content("assets/vendor/datatables/dataTables.responsive.min.js")"></script>
 <script src="@Url.Content("assets/vendor/datatables/js/dataTables.select.min.js")"></script>
-<script src="@Url.Content("assets/vendor/datatables/js/dataTables.checkboxes.min.js")"></script>
+<script src="@Url.Content("assets/vendor/datatables/js/dataTables.checkboxes.min.js")"></script>*@
 
 
 
 <!-- Datatable -->
+<style>
+    input[data-switch] {
+    display: none;
+}
 
+    input[data-switch=bool]+label {
+    background-color: #fa5c7c;
+}
+
+    input[data-switch]:checked+label {
+    background-color: #727cf5;
+}
+
+    input[data-switch]+label {
+    width: 56px;
+    height: 24px;
+    background-color: #f1f3fa;
+    background-image: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+}
+label {
+    font-weight: 600;
+}
+
+input[data-switch=bool]+label:before, input[data-switch=bool]:checked+label:before {
+    color: #fff!important;
+}
+
+input[data-switch]:checked+label:before {
+    color: #fff;
+    content: attr(data-on-label);
+    right: auto;
+    left: 4px;
+}
+
+input[data-switch]+label:before {
+    color: #313a46;
+    content: attr(data-off-label);
+    display: block;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: .75rem;
+    line-height: 24px;
+    position: absolute;
+    right: 3px;
+    margin: 0 0.21667rem;
+    top: 0;
+    text-align: center;
+    min-width: 1.66667rem;
+    overflow: hidden;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+}
+
+input[data-switch]:checked+label:after {
+    left: 34px;
+    background-color: #f1f3fa;
+}
+
+input[data-switch=bool]+label:after {
+    background-color: #f1f3fa;
+}
+
+input[data-switch]+label:after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    background-color: #adb5bd;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 2rem;
+    height: 18px;
+    width: 18px;
+    top: 3px;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+}
+</style>
 
 <div class="card">
     <div class="card-body">
+        <input type="checkbox" id="switch1" checked="" data-switch="bool">
+        <label for="switch1" data-on-label="On" data-off-label="Off"></label>
+
         <div class="table-responsive">
-            <button onclick="Selecall()" > selecc al check</button>
+            @*<button onclick="Selecall()" > selecc al check</button>*@
             <table id="example" class="display" style="width: 100%">
-       
             </table>
         </div>
     </div>
@@ -35,63 +120,63 @@
                 data: null,
                 sortable: false,
                 title: "Editar",
-                width: "80px", 
-                render: function (data, type, row, meta) { return "<a class=\"btn btn-primary\" style=\"color:white\" onclick=Editar("+ data.COD_UBIGEO + ")\> Edit </a>"; }
+                width: "80px",
+                render: function (data, type, row, meta) { return "<a class=\"btn btn-primary\" style=\"color:white\" onclick=Editar(" + data.COD_UBIGEO + ")\> Edit </a>"; }
             }
-          ]; 
- var opciones = {
-     GridLocal: true, multiselect: false, sort: "desc" , PositionColumnSort: 1 , // numero columna para ordenar
-     eliminar: false, search: true, rowNumber: 10, rowNumbers: [10, 25, 50], rules: true,responsive : true , processing :true
- };
+    ];
+    var opciones = {
+        GridLocal: false, multiselect: true, sort: "desc", PositionColumnSort: 1, // numero columna para ordenar
+        eliminar: false, search: true, rowNumber: 10, rowNumbers: [10, 25, 50], rules: true, responsive: true, processing: true
+    };
 
-   DataTable.Grilla(Usuarios_Grilla, url, 'COD_UBIGEO', colModels, opciones);
+    DataTable.Grilla(Usuarios_Grilla, url, 'COD_UBIGEO', colModels, opciones);
 
- function GetRules(Ventas_Grilla) {
-     var rules = new Array();
-     var SearchFields = new Array();
+    function GetRules(Ventas_Grilla) {
+        var rules = new Array();
+        var SearchFields = new Array();
 
-     var FECHA_VENTA = moment().format('DD/MM/YYYY');
-     var ID_TIPO_COMPROBANTE = jQuery('#ID_TIPO_COMPROBANTE_SEARCH').val() == '' ? null : "'" + jQuery('#ID_TIPO_COMPROBANTE_SEARCH').val() + "'";
-     var ID_TIPO_PAGO = jQuery('#ID_TIPO_PAGO_SEARCH').val() == '' ? null : "'" + jQuery('#ID_TIPO_PAGO_SEARCH').val() + "'";
-     var CODIGO_VENTA = "'" + jQuery('#Ventas_CodigoVenta').val() + "'";
-     var _USUARIO_LOGEADO = "'" + jQuery('#input_hdcodusuario').val() + "'";
+        var FECHA_VENTA = moment().format('DD/MM/YYYY');
+        var ID_TIPO_COMPROBANTE = jQuery('#ID_TIPO_COMPROBANTE_SEARCH').val() == '' ? null : "'" + jQuery('#ID_TIPO_COMPROBANTE_SEARCH').val() + "'";
+        var ID_TIPO_PAGO = jQuery('#ID_TIPO_PAGO_SEARCH').val() == '' ? null : "'" + jQuery('#ID_TIPO_PAGO_SEARCH').val() + "'";
+        var CODIGO_VENTA = "'" + jQuery('#Ventas_CodigoVenta').val() + "'";
+        var _USUARIO_LOGEADO = "'" + jQuery('#input_hdcodusuario').val() + "'";
 
-     var POR = "'%'";
-     rules = []
+        var POR = "'%'";
+        rules = []
 
-     //rules.push({ field: 'UPPER(COD_UBIGEO)', data: POR + ' + ' + '' + ' + ' + POR, op: " LIKE " });
-     /*
-     rules.push({ field: 'UPPER(COD_COMPROBANTE)', data: POR + ' + ' + CODIGO_VENTA + ' + ' + POR, op: " LIKE " });
-     rules.push({ field: 'ID_TIPO_COMPROBANTE', data: '  ISNULL(' + ID_TIPO_COMPROBANTE + ',ID_TIPO_COMPROBANTE) ', op: " = " });
-     rules.push({ field: 'ID_TIPO_PAGO', data: '  ISNULL(' + ID_TIPO_PAGO + ',ID_TIPO_PAGO) ', op: " = " });
-     rules.push({ field: 'CONVERT(DATE,FEC_CREACION,103)', data: 'CONVERT(DATE,\'' + FECHA_VENTA + '\',103) ', op: " = " });
-     rules.push({ field: 'UPPER(USU_CREACION)', data: _USUARIO_LOGEADO, op: " = " }); */
-
-
-     SearchFields.push({ field: 'UPPER(COD_UBIGEO)' });
-     SearchFields.push({ field: 'UPPER(DESC_UBIGEO)' });
-
-     var ObjectRules = {
-         SearchFields: SearchFields,
-         rules: rules 
-     }
-  
-     return ObjectRules;
- }
+        //rules.push({ field: 'UPPER(COD_UBIGEO)', data: POR + ' + ' + '' + ' + ' + POR, op: " LIKE " });
+        /*
+        rules.push({ field: 'UPPER(COD_COMPROBANTE)', data: POR + ' + ' + CODIGO_VENTA + ' + ' + POR, op: " LIKE " });
+        rules.push({ field: 'ID_TIPO_COMPROBANTE', data: '  ISNULL(' + ID_TIPO_COMPROBANTE + ',ID_TIPO_COMPROBANTE) ', op: " = " });
+        rules.push({ field: 'ID_TIPO_PAGO', data: '  ISNULL(' + ID_TIPO_PAGO + ',ID_TIPO_PAGO) ', op: " = " });
+        rules.push({ field: 'CONVERT(DATE,FEC_CREACION,103)', data: 'CONVERT(DATE,\'' + FECHA_VENTA + '\',103) ', op: " = " });
+        rules.push({ field: 'UPPER(USU_CREACION)', data: _USUARIO_LOGEADO, op: " = " }); */
 
 
+        SearchFields.push({ field: 'UPPER(COD_UBIGEO)' });
+        SearchFields.push({ field: 'UPPER(DESC_UBIGEO)' });
 
- function Editar(id) {
-     alert(id); 
- }
- function Selecall() {
-     debugger; 
-    DataTable.addRowData(Usuarios_Grilla,{
-         "COD_UBIGEO": "2",
-         "COD_UBIGEO_PADRE": "System Architect",
-         "DESC_UBIGEO": "$3,120",
-         "TIP_ZONA_GEO": "2011/04/25"
-                  }  );
+        var ObjectRules = {
+            SearchFields: SearchFields,
+            rules: rules
+        }
 
- }
+        return ObjectRules;
+    }
+
+
+
+    function Editar(id) {
+        alert(id);
+    }
+    function Selecall() {
+        debugger;
+        DataTable.addRowData(Usuarios_Grilla, {
+            "COD_UBIGEO": "2",
+            "COD_UBIGEO_PADRE": "System Architect",
+            "DESC_UBIGEO": "$3,120",
+            "TIP_ZONA_GEO": "2011/04/25"
+        });
+
+    }
 </script>

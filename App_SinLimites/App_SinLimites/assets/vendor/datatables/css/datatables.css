@@ -10,7 +10,9 @@
  *   DataTables 1.11.5
  */
 
-@import url('select.dataTables.css');
+  @import url('responsive.dataTables.min.css');
+ @import url('select.dataTables.css');
+
 
 table.dataTable {
     width: 100%;
@@ -365,3 +367,6 @@ table.dataTable, table.dataTable th, table.dataTable td {
     margin-top: 0.5em;
 }
 }
+
+
+
